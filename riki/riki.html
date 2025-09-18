@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Riki</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+        /* CSS untuk foto background */
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* CSS tambahan untuk galeri foto */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .photo-gallery video {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="flex justify-center h-screen items-center">
+
+<div class="bg-black border px-10 py-8 border-4 border-white
+shadow-lg shadow-white rounded-xl text-center animate__animated animate__backInDown m-8 w-80" id="card">
+    <h1 class="text-3xl text-white font-bold">Halo Sayang</h1>
+    <p class="mt-4 text-white">Silahkan masukan nama yaaa!</p>
+    <input type="text" id="nameInput" placeholder="Nama Ayang..." class="mt-2 w-full p-2 border border-black rounded text-center">
+    <button
+        class="p-2 bg-red-800 text-black rounded mt-5 hover:bg-red-500 transition ease-in w-full animate__animated animate__delay-1s animate__tada" onclick="showBirthdayMessage()">
+        Masuk😍
+    </button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+<script>
+    let card = document.getElementById("card");
+    let body = document.body;
+
+    // --- Ganti URL foto background di sini ---
+    const backgroundUrl = '9.jpg';
+
+body.style.backgroundImage = `url(${backgroundUrl})`;
+
+    // --- Ganti URL video di sini ---
+    const mediaUrls = [
+        { type: 'video', url: '2.mp4' } // Ganti URL ini dengan URL video Anda
+    ];
+
+    function showBirthdayMessage() {
+        const name = document.getElementById("nameInput").value || "Sayangku";
+        card.innerHTML = `
+            <h1 class="text-3xl font-bold animate__animated animate__zoomIn text-white">Selamat Ulang Tahun, ${name}!</h1>
+            <p class="mt-4 text-white animate__animated animate__fadeIn **text-center**">
+                Selamat ulang tahun yang ke-22, sayangku ❤️
+                Semoga di usia baru ini kamu selalu diberi kesehatan,
+                kebahagiaan, dan kesuksesan dalam setiap langkahmu. Terima kasih sudah jadi bagian terindah
+                dalam hidupku, tempat aku berbagi cerita, tawa, dan doa.
+                Semoga semua impianmu bisa tercapai, dan aku ingin terus ada
+                di sampingmu untuk merayakan setiap momen berharga dalam
+                hidupmu.
+        </p>
+            <div class="flex justify-center">
+        <button
+            class="p-2 bg-red-800 text-black rounded mt-5 hover:bg-red-500 transition ease-in w-full animate__animated animate__delay-1s animate__tada" onclick="showPhotos()">
+            Lanjut🥰
+        </button>
+    </div>
+        `;
+        confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+    }
+
+    function showPhotos() {
+        let galleryHtml = '';
+        mediaUrls.forEach(media => {
+            if (media.type === 'video') {
+                galleryHtml += `<video controls autoplay loop muted><source src="${media.url}" type="video/mp4"></video>`;
+            }
+        });
+
+        card.innerHTML = `
+            <h1 class="text-2xl font-bold animate__animated animate__zoomIn mb-4">Momen Indah Kita</h1>
+            <div class="photo-gallery animate__animated animate__fadeIn">
+                ${galleryHtml}
+            </div>
+            <button
+                class="p-2 bg-red-800 text-black rounded mt-5 hover:bg-red-500 transition ease-in w-full animate__animated animate__delay-1s animate__tada" onclick="resetCard()">
+                Macihhhh😘
+            </button>
+        `;
+        confetti({ particleCount: 50, spread: 50, origin: { y: 0.6 } });
+    }
+
+    function resetCard() {
+        location.reload();
+    }
+</script>
+</body>
+</html>
